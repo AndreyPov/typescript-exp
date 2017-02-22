@@ -30,3 +30,47 @@ notSure = false;
 function warnUser(): void {
     console.log("This is my warning message");
 }
+
+///// ADVANCED TYPES
+
+interface Bird {
+    fly();
+    layEggs();
+}
+
+interface Fish {
+    swim();
+    layEggs();
+}
+
+function getSmallPet(): Fish | Bird {
+
+  function layEggs(){
+    console.log("works");
+  }
+  return 0;
+}
+
+let pet = getSmallPet();
+console.log(pet);
+pet.layEggs(); // okay
+//pet.swim();    // errors
+
+
+let pet = getSmallPet();
+
+if ((<Fish>pet).swim) {
+    (<Fish>pet).swim();
+}
+else {
+    (<Bird>pet).fly();
+}
+
+// Each of these property accesses will cause an error
+/*if (pet.swim) {
+    pet.swim();
+}
+else if (pet.fly) {
+    pet.fly();
+}
+*/
